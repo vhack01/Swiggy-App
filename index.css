@@ -55,3 +55,22 @@ body {
   height: 20rem;
   width: 100%;
 }
+
+.filterContainer {
+  display: flex;
+  justify-content: right;
+  /* border: 1px solid #000; */
+  padding: 1rem;
+}
+.filter {
+  margin-right: 15rem;
+  border: 1px solid #eee;
+  padding: 1rem;
+  background-color: #eee;
+  font-size: 1.2rem;
+  cursor: pointer;
+  border-radius: 4px;
+}
+.filter:hover {
+  background-color: #cecdcd;
+}
