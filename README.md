@@ -3,5 +3,6 @@
 ## Dependencies
 
     - parcel
-    - react, react-dom
+    - react
+    - react-dom
     - react-router-dom

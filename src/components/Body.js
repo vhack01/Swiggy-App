@@ -1,27 +1,13 @@
 import RestaurantCard from "./RestaurantCard";
-import { useEffect, useState } from "react";
-import { RESTAURANT_API } from "../utils/constants";
 import Shimmer from "./Shimmer";
 import SearchBar from "./SearchBar";
+import { Link } from "react-router-dom";
+import useRestaurantsData from "../hooks/useRestaurants";
 
 const Body = () => {
-  const [restaurants, setRestaurants] = useState([]);
-  const [filteredRestaurants, setFilteredRestaurants] = useState([]);
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  async function fetchData() {
-    const res = await fetch(RESTAURANT_API);
-    const jsonData = await res.json();
-    const restaurantLists =
-      jsonData?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
-        ?.restaurants;
-    setRestaurants(restaurantLists);
-    setFilteredRestaurants(restaurantLists);
-  }
-
+  const { restInfo, restFilter } = useRestaurantsData();
+  const { restaurants, setRestaurants } = restInfo;
+  const { filteredRestaurants, setFilteredRestaurants } = restFilter;
   console.log("body rendered", restaurants);
 
   function handleFilterTopRestaurant() {
@@ -48,9 +34,15 @@ const Body = () => {
         </button>
       </div>
       <div className="res-container">
-        {filteredRestaurants.length ? (
+        {filteredRestaurants?.length ? (
           filteredRestaurants.map((restaurant) => (
-            <RestaurantCard key={restaurant.info.id} resData={restaurant} />
+            <Link
+              key={restaurant.info.id}
+              to={`/restaurants/${restaurant.info.id}`}
+              style={{ color: "black", textDecoration: "none" }}
+            >
+              <RestaurantCard key={restaurant.info.id} resData={restaurant} />
+            </Link>
           ))
         ) : (
           <Shimmer />

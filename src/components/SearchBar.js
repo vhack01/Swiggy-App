@@ -2,7 +2,7 @@ import { useState } from "react";
 
 const SearchBar = ({ fn }) => {
   const [value, setValue] = useState("");
-  console.log("SearchBar rendering");
+  // console.log("SearchBar rendering");
   return (
     <div className="search-container">
       <input

@@ -26,7 +26,9 @@ body {
   align-items: center;
 }
 
-.nav-items-ul > li {
+.nav-items-ul-items {
+  color: rgb(53, 52, 52);
+  text-decoration: dotted;
   font-size: 1.6rem;
   margin-left: 2rem;
 }
@@ -65,9 +67,9 @@ body {
 }
 .filter {
   margin-right: 15rem;
-  border: 1px solid #eee;
+  /* border: 1px solid #eee; */
   padding: 1rem;
-  background-color: #eee;
+  background-color: #dcdcdc;
   font-size: 1.2rem;
   cursor: pointer;
   border-radius: 4px;
@@ -96,6 +98,9 @@ body {
   border: 1px solid #000;
   border-radius: 4px;
   padding: 5px 10px;
+  display: flex;
+  justify-content: center;
+  position: relative;
 }
 
 .login-btn:hover {
@@ -126,4 +131,63 @@ body {
 
 .search-btn:hover {
   background-color: #cecdcd;
+}
+
+/* -------- Menus ----------- */
+.res-menu-image {
+  width: 30rem;
+  object-fit: contain;
+}
+
+/* useCard */
+.user-card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3rem 3rem;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.user-card {
+  cursor: pointer;
+  width: 30rem;
+  padding: 1rem;
+  border-radius: 4px;
+  box-shadow: 0px 0px 10px 2px rgb(221, 221, 221);
+  transition: transform 0.2s;
+}
+.user-card:hover {
+  transform: scale(1.05);
+}
+
+.user-image-container {
+  overflow: hidden;
+  background-color: #ffa22fba;
+  border-radius: 4px;
+  padding: 1rem 0;
+  text-align: center;
+}
+
+.user-image {
+  border-radius: 80%;
+  width: 30%;
+}
+.user-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.user-description {
+  font-size: 1.2rem;
+}
+
+.internet-status {
+  height: 5px;
+  width: 5px;
+  border-radius: 100;
+  background-color: red;
+  position: absolute;
+  top: 0.35rem;
+  right: 0.35rem;
 }
