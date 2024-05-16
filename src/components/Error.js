@@ -4,7 +4,7 @@ const Error = () => {
   console.log(errMsg);
   return (
     <h1>
-      <i>Oops!!! </i> something went wrong
+      <i>Oops!!! </i> Wrong route
       <h2>
         {errMsg.status} {errMsg.statusText}
       </h2>

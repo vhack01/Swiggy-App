@@ -1,7 +1,5 @@
 const Grocery = () => {
-  return (
-    <div>Our grocery online store and we have multiple child component</div>
-  );
+  return <h1>Our grocery online store and we have multiple child component</h1>;
 };
 
 export default Grocery;
