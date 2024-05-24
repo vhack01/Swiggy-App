@@ -4,7 +4,7 @@ const SearchBar = ({ fn }) => {
   const [value, setValue] = useState("");
   // console.log("SearchBar rendering");
   return (
-    <div className="search-container">
+    <div className="flex gap-x-1">
       <input
         type="text"
         id="search-box"
@@ -12,8 +12,13 @@ const SearchBar = ({ fn }) => {
         onChange={(e) => {
           setValue(e.target.value);
         }}
+        placeholder="search restaurants, cuisines"
+        className="border-solid border-2 border-gray-500 rounded px-2"
       />
-      <button className="search-btn" onClick={() => fn(value)}>
+      <button
+        className="border-solid border-2 border-green-400 bg-green-100 px-2 rounded hover:bg-green-200"
+        onClick={() => fn(value)}
+      >
         Search
       </button>
     </div>

@@ -9,3 +9,6 @@ export const RESTAURANT_API =
   "https://www.swiggy.com/dapi/restaurants/list/v5?lat=31.22810&lng=75.77870&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING";
 
 export const GIT_USER_IMAGE = "https://avatars.githubusercontent.com/u";
+
+export const DEFAULT_IMAGE_URL =
+  "https://icon-library.com/images/no-picture-available-icon/no-picture-available-icon-1.jpg";

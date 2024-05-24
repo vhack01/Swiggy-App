@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { LOGO_URL } from "../utils/constants";
 import { Link } from "react-router-dom";
 import useInternetStatus from "../hooks/useInternetStatus";
@@ -7,22 +7,26 @@ const Header = () => {
   const [btnName, setBtnName] = useState("Login");
 
   const status = useInternetStatus();
-
+  // console.log("Status:", status);
   const linkStyle = {
     color: "black",
     textDecoration: "none",
   };
 
   return (
-    <div className="header">
-      <div className="logoContainer">
+    <div className="flex justify-between items-center px-4 border-b-2 border-solid ">
+      <div className="">
         <Link to="/">
-          <img src={LOGO_URL} className="logo" />
+          <img
+            src={LOGO_URL}
+            className="w-20"
+            style={{ mixBlendMode: "multiply" }}
+          />
         </Link>
       </div>
 
-      <div className="nav-items">
-        <ul className="nav-items-ul">
+      <div className="">
+        <ul className="flex items-center gap-x-3 text-xs sm:text-sm md:text-base">
           <li className="nav-items-ul-items">
             Online status: {status === true ? "🟢" : "🔴"}
           </li>
@@ -42,7 +46,7 @@ const Header = () => {
             <li className="nav-items-ul-items">Cart</li>
           </Link>
           <button
-            className="login-btn"
+            className="border-2 border-solid border-orange-500 rounded py-1 px-2 bg-orange-200 hover:bg-gray-300 cursor-pointer"
             onClick={() => {
               setBtnName(btnName === "Logout" ? "Login" : "Logout");
             }}

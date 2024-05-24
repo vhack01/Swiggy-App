@@ -20,8 +20,8 @@ const About = () => {
   }
 
   return (
-    <div className="about-container">
-      <div className="user-card-container">
+    <div className="p-4">
+      <div className="flex flex-wrap justify-center gap-4">
         {users?.length === 0 ? (
           <Shimmer />
         ) : (

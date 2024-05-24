@@ -4,7 +4,6 @@ const useInternetStatus = () => {
   const [status, setStatus] = useState(true);
 
   useEffect(() => {
-    console.log("event attached");
     ononline = (event) => {
       setStatus(true);
     };

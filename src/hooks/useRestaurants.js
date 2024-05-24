@@ -9,13 +9,18 @@ const useRestaurantsData = () => {
   }, []);
 
   async function fetchData() {
-    const res = await fetch(RESTAURANT_API);
-    const jsonData = await res.json();
-    const restaurantLists =
-      jsonData?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
-        ?.restaurants;
-    setRestaurants(restaurantLists);
-    setFilteredRestaurants(restaurantLists);
+    try {
+      const res = await fetch(RESTAURANT_API);
+      const jsonData = await res.json();
+      console.log(jsonData?.data?.cards[1]?.card?.card?.gridElements);
+      const restaurantLists =
+        jsonData?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
+          ?.restaurants;
+      setRestaurants(restaurantLists);
+      setFilteredRestaurants(restaurantLists);
+    } catch (err) {
+      console.log("Failed to fetch restaurant detail:", err);
+    }
   }
   return {
     restInfo: { restaurants, setRestaurants },

@@ -8,7 +8,7 @@ import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import Error from "./components/Error";
 import RestaurantMenu from "./components/RestaurantMenu";
 
-// Suppose Grocery is a big compoent, it has 20 more child component -> Use lazy loading to increase performance
+// Suppose Grocery is a big compoent, it has 20 more child component -> Use lazy loading to increase performace
 const Grocery = lazy(() => {
   return import("./components/Grocery");
 });

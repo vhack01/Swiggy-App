@@ -8,7 +8,6 @@ const Body = () => {
   const { restInfo, restFilter } = useRestaurantsData();
   const { restaurants, setRestaurants } = restInfo;
   const { filteredRestaurants, setFilteredRestaurants } = restFilter;
-  console.log("body rendered", restaurants);
 
   function handleFilterTopRestaurant() {
     const filteredRes = restaurants.filter((res) => res.info.avgRating >= 4.5);
@@ -16,7 +15,6 @@ const Body = () => {
   }
 
   function handleSearch(value) {
-    console.log(restaurants);
     value = value.trim();
     const searchedList = restaurants.filter((res) =>
       res.info.name.toLowerCase().includes(value.toLowerCase())
@@ -25,15 +23,18 @@ const Body = () => {
   }
 
   return (
-    <div className="body">
+    <div className="p-4 mt-10">
       <div className="search"></div>
-      <div className="filterContainer">
+      <div className="flex justify-end gap-x-5">
         <SearchBar fn={handleSearch} />
-        <button className="filter" onClick={handleFilterTopRestaurant}>
+        <button
+          className="rounded py-1 px-2 bg-gray-200 hover:bg-gray-300 cursor-pointer"
+          onClick={handleFilterTopRestaurant}
+        >
           Top-rated
         </button>
       </div>
-      <div className="res-container">
+      <div className="flex justify-center gap-4 flex-wrap ">
         {filteredRestaurants?.length ? (
           filteredRestaurants.map((restaurant) => (
             <Link
