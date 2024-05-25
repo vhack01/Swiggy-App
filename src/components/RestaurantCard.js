@@ -1,6 +1,5 @@
 import { CDN_URL } from "../utils/constants";
-const RestaurantCard = ({ resData }) => {
-  // console.log("restaurant data:", resData);
+const RestaurantCard = ({ tag, resData }) => {
   const {
     id: restId,
     name,

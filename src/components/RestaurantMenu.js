@@ -1,14 +1,18 @@
 import { useParams } from "react-router-dom";
 import Shimmer from "./Shimmer";
-import { CDN_URL, DEFAULT_IMAGE_URL } from "../utils/constants";
+import { CDN_URL } from "../utils/constants";
 import useRestaurantMenu from "../hooks/useRestaurantMenu";
-import MenuItemCard from "./MenuItemCard";
+import { useState } from "react";
+import MenuCategory from "./MenuCategory";
 
 const RestaurantMenu = () => {
   const { restId } = useParams();
-  const { restaurant, menuList } = useRestaurantMenu(restId);
-  // console.log("single restaurant:", restaurant);
-  console.log("single restaurant menu:", menuList);
+  const { restaurant, menuCategory } = useRestaurantMenu(restId);
+  const [showIndex, setShowIndex] = useState(-1);
+  function handleAccord(index) {
+    setShowIndex(index === showIndex ? -1 : index);
+  }
+
   if (restaurant === null) return <Shimmer />;
 
   const {
@@ -54,13 +58,43 @@ const RestaurantMenu = () => {
           </section>
         </div>
         <div className="menu-list">
-          <ul className="flex justify-start flex-wrap gap-x-4">
-            {menuList.length === 0 ? (
+          <ul className="flex justify-start flex-wrap gap-x-4 mt-4">
+            {menuCategory.length === 0 ? (
               <h1>No menu available</h1>
             ) : (
-              menuList.map((menu) => (
-                <MenuItemCard key={menu?.card?.info?.id} menuData={menu} />
-              ))
+              menuCategory.map((category, index) => {
+                if (
+                  category.card?.card?.["@type"] ===
+                  "type.googleapis.com/swiggy.presentation.food.v2.NestedItemCategory"
+                ) {
+                  return (
+                    <div key={index} className="w-full mb-2 p-2 border rounded">
+                      <h1 className="font-bold">
+                        {category.card?.card?.title}
+                      </h1>
+                      {category.card?.card.categories.map((items, index2) => (
+                        <MenuCategory
+                          key={index + "" + index2}
+                          card={items}
+                          accord={
+                            index + "" + index2 === showIndex ? true : false
+                          }
+                          handleAccord={() => handleAccord(index + "" + index2)}
+                        />
+                      ))}
+                    </div>
+                  );
+                } else {
+                  return (
+                    <MenuCategory
+                      key={index}
+                      accord={index === showIndex ? true : false}
+                      handleAccord={() => handleAccord(index)}
+                      card={category?.card?.card}
+                    />
+                  );
+                }
+              })
             )}
           </ul>
         </div>

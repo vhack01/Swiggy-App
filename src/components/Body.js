@@ -3,11 +3,13 @@ import Shimmer from "./Shimmer";
 import SearchBar from "./SearchBar";
 import { Link } from "react-router-dom";
 import useRestaurantsData from "../hooks/useRestaurants";
+import withDiscount from "../utils/withDiscount";
 
 const Body = () => {
   const { restInfo, restFilter } = useRestaurantsData();
   const { restaurants, setRestaurants } = restInfo;
   const { filteredRestaurants, setFilteredRestaurants } = restFilter;
+  const RestaurantCardDiscount = withDiscount(RestaurantCard);
 
   function handleFilterTopRestaurant() {
     const filteredRes = restaurants.filter((res) => res.info.avgRating >= 4.5);
@@ -42,7 +44,11 @@ const Body = () => {
               to={`/restaurants/${restaurant.info.id}`}
               style={{ color: "black", textDecoration: "none" }}
             >
-              <RestaurantCard key={restaurant.info.id} resData={restaurant} />
+              {restaurant?.info?.aggregatedDiscountInfoV3 ? (
+                <RestaurantCardDiscount resData={restaurant} />
+              ) : (
+                <RestaurantCard resData={restaurant} />
+              )}
             </Link>
           ))
         ) : (

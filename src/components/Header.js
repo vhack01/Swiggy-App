@@ -1,11 +1,12 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { LOGO_URL } from "../utils/constants";
 import { Link } from "react-router-dom";
 import useInternetStatus from "../hooks/useInternetStatus";
-
+import UserContext from "../utils/UserContext";
 const Header = () => {
   const [btnName, setBtnName] = useState("Login");
-
+  const data = useContext(UserContext);
+  console.log("userContext:", data);
   const status = useInternetStatus();
   // console.log("Status:", status);
   const linkStyle = {
@@ -59,6 +60,7 @@ const Header = () => {
               }}
             ></div>
           </button>
+          <li className="font-bold">{data.loggedIn}</li>
         </ul>
       </div>
     </div>

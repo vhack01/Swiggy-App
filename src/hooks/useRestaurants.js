@@ -12,7 +12,6 @@ const useRestaurantsData = () => {
     try {
       const res = await fetch(RESTAURANT_API);
       const jsonData = await res.json();
-      console.log(jsonData?.data?.cards[1]?.card?.card?.gridElements);
       const restaurantLists =
         jsonData?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
           ?.restaurants;

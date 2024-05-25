@@ -1,10 +1,12 @@
 import UserCard from "./UserCard";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Shimmer from "./Shimmer";
+import UserContext from "../utils/UserContext";
 
 const About = () => {
   const [users, setUsers] = useState([]);
-
+  const data = useContext(UserContext);
+  console.log(data);
   useEffect(() => {
     console.log("useEffect About");
     fetchData();

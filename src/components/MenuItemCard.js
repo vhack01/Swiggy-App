@@ -1,10 +1,9 @@
 import { CDN_MENU, DEFAULT_IMAGE_URL } from "../utils/constants";
 
 const MenuItemCard = ({ menuData }) => {
+  console.log("menu item:", menuData);
   const { name, price, ratings, category, imageId, description, defaultPrice } =
     menuData?.card?.info;
-
-  console.log("imageid:", imageId);
 
   return (
     <div className="w-80 sm:w-80 text-sm bg-gray-0 rounded-md overflow-hidden mt-6 p-4 border border-gray-50 hover:border-gray-400 font-montserrat flex flex-col justify-between">
