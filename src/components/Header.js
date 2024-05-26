@@ -3,19 +3,18 @@ import { LOGO_URL } from "../utils/constants";
 import { Link } from "react-router-dom";
 import useInternetStatus from "../hooks/useInternetStatus";
 import UserContext from "../utils/UserContext";
+import CartContext from "../utils/cartContext";
 const Header = () => {
   const [btnName, setBtnName] = useState("Login");
-  const data = useContext(UserContext);
-  console.log("userContext:", data);
+  const { itemCount } = useContext(CartContext);
   const status = useInternetStatus();
-  // console.log("Status:", status);
   const linkStyle = {
     color: "black",
     textDecoration: "none",
   };
 
   return (
-    <div className="flex justify-between items-center px-4 border-b-2 border-solid ">
+    <div className="w-full z-10 bg-white flex justify-between items-center px-4 shadow-md shadow-green-400 fixed top-0">
       <div className="">
         <Link to="/">
           <img
@@ -44,7 +43,9 @@ const Header = () => {
             <li className="nav-items-ul-items">Contact</li>
           </Link>
           <Link to="/cart" style={linkStyle}>
-            <li className="nav-items-ul-items">Cart</li>
+            <li className="nav-items-ul-items">
+              Cart {itemCount === 0 ? "" : `(${itemCount})`}
+            </li>
           </Link>
           <button
             className="border-2 border-solid border-orange-500 rounded py-1 px-2 bg-orange-200 hover:bg-gray-300 cursor-pointer"
@@ -60,7 +61,11 @@ const Header = () => {
               }}
             ></div>
           </button>
-          <li className="font-bold">{data.loggedIn}</li>
+          <li className="font-bold">
+            <UserContext.Consumer>
+              {(data) => data.loggedIn}
+            </UserContext.Consumer>
+          </li>
         </ul>
       </div>
     </div>

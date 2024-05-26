@@ -4,9 +4,8 @@ import Shimmer from "./Shimmer";
 import UserContext from "../utils/UserContext";
 
 const About = () => {
-  const [users, setUsers] = useState([]);
   const data = useContext(UserContext);
-  console.log(data);
+  const [users, setUsers] = useState([]);
   useEffect(() => {
     console.log("useEffect About");
     fetchData();
@@ -15,7 +14,6 @@ const About = () => {
   async function fetchData() {
     const res = await fetch("https://api.github.com/gists/public");
     const json = await res.json();
-    console.log(json);
     if (json) {
       setUsers(json);
     }
@@ -23,6 +21,7 @@ const About = () => {
 
   return (
     <div className="p-4">
+      <h1>{data.loggedIn}</h1>
       <div className="flex flex-wrap justify-center gap-4">
         {users?.length === 0 ? (
           <Shimmer />

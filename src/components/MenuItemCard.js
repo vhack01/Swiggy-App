@@ -1,7 +1,9 @@
+import { useContext } from "react";
 import { CDN_MENU, DEFAULT_IMAGE_URL } from "../utils/constants";
+import CartContext from "../utils/cartContext";
 
 const MenuItemCard = ({ menuData }) => {
-  console.log("menu item:", menuData);
+  const data = useContext(CartContext);
   const { name, price, ratings, category, imageId, description, defaultPrice } =
     menuData?.card?.info;
 
@@ -27,7 +29,10 @@ const MenuItemCard = ({ menuData }) => {
         </div>
         <h3 className="text-xs text-gray-500">{description}</h3>
       </div>
-      <button className="bg-green-100 text-green-500 border-2 border-green-400 font-bold p-3 rounded mt-2 cursor-pointer">
+      <button
+        className="bg-green-100 text-green-500 border-2 border-green-400 font-bold p-3 rounded mt-2 cursor-pointer"
+        onClick={() => data.setCartItemCount(data.itemCount + 1)}
+      >
         ADD
       </button>
     </div>

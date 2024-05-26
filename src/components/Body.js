@@ -4,8 +4,12 @@ import SearchBar from "./SearchBar";
 import { Link } from "react-router-dom";
 import useRestaurantsData from "../hooks/useRestaurants";
 import withDiscount from "../utils/withDiscount";
+import { useContext, useState } from "react";
+import UserContext from "../utils/UserContext";
 
 const Body = () => {
+  const data = useContext(UserContext);
+  // const [textValue, setTextValue] = useState("");
   const { restInfo, restFilter } = useRestaurantsData();
   const { restaurants, setRestaurants } = restInfo;
   const { filteredRestaurants, setFilteredRestaurants } = restFilter;
@@ -25,9 +29,17 @@ const Body = () => {
   }
 
   return (
-    <div className="p-4 mt-10">
+    <div className="p-4 mt-24">
       <div className="search"></div>
       <div className="flex justify-end gap-x-5">
+        <div>
+          <input
+            type="text"
+            placeholder="Type here..."
+            className="border-2 p-1 rounded"
+            onChange={(e) => data.setName(e.target.value)}
+          />
+        </div>
         <SearchBar fn={handleSearch} />
         <button
           className="rounded py-1 px-2 bg-gray-200 hover:bg-gray-300 cursor-pointer"
@@ -38,7 +50,7 @@ const Body = () => {
       </div>
       <div className="flex justify-center gap-4 flex-wrap ">
         {filteredRestaurants?.length ? (
-          filteredRestaurants.map((restaurant) => (
+          filteredRestaurants?.map((restaurant) => (
             <Link
               key={restaurant.info.id}
               to={`/restaurants/${restaurant.info.id}`}

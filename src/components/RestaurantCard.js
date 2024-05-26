@@ -1,4 +1,6 @@
+import { useContext } from "react";
 import { CDN_URL } from "../utils/constants";
+import UserContext from "../utils/UserContext";
 const RestaurantCard = ({ tag, resData }) => {
   const {
     id: restId,
@@ -9,7 +11,7 @@ const RestaurantCard = ({ tag, resData }) => {
     cloudinaryImageId,
     costForTwo,
   } = resData?.info;
-
+  const data = useContext(UserContext);
   function handleRestaurantNavigation(restId) {
     console.log("restaurant id:", restId);
   }
@@ -36,6 +38,7 @@ const RestaurantCard = ({ tag, resData }) => {
           Delivery in : {sla.deliveryTime} min
         </h3>
       </div>
+      <h1>{data.loggedIn}</h1>
     </div>
   );
 };
