@@ -23,7 +23,7 @@ const About = () => {
     <div className="p-4">
       <h1>{data.loggedIn}</h1>
       <div className="flex flex-wrap justify-center gap-4">
-        {users?.length === 0 ? (
+        {users !== undefined && users?.length === 0 ? (
           <Shimmer />
         ) : (
           users.map((user) => <UserCard key={user?.id} userData={user} />)

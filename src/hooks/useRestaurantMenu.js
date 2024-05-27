@@ -14,7 +14,6 @@ const useRestaurantMenu = (restId) => {
       );
       const json = await res.json();
       const info = json?.data?.cards[2]?.card?.card?.info;
-
       const menuCategory =
         json?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR.cards.filter(
           (item) =>

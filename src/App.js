@@ -7,7 +7,8 @@ import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import Error from "./components/Error";
 import RestaurantMenu from "./components/RestaurantMenu";
 import UserContext from "./utils/UserContext";
-import CartContext from "./utils/cartContext";
+import { Provider } from "react-redux";
+import appStore from "./store/appStore";
 
 const About = lazy(() => {
   return import("./components/About");
@@ -19,21 +20,20 @@ const Grocery = lazy(() => {
 
 const AppLayout = () => {
   const [name, setName] = useState("");
-  const [cartItemsCount, setCartItemCount] = useState(0);
   useEffect(() => {
     setName("Vishwas Kumar");
   }, []);
   return (
-    <UserContext.Provider value={{ loggedIn: name, setName }}>
-      <CartContext.Provider
-        value={{ itemCount: cartItemsCount, setCartItemCount }}
-      >
+    <Provider store={appStore}>
+      <UserContext.Provider value={{ loggedIn: name, setName }}>
         <div className="App">
           <Header />
-          <Outlet />
+          <div className="mt-24">
+            <Outlet />
+          </div>
         </div>
-      </CartContext.Provider>
-    </UserContext.Provider>
+      </UserContext.Provider>
+    </Provider>
   );
 };
 

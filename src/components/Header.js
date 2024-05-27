@@ -3,15 +3,20 @@ import { LOGO_URL } from "../utils/constants";
 import { Link } from "react-router-dom";
 import useInternetStatus from "../hooks/useInternetStatus";
 import UserContext from "../utils/UserContext";
-import CartContext from "../utils/cartContext";
+import { useSelector } from "react-redux";
 const Header = () => {
   const [btnName, setBtnName] = useState("Login");
-  const { itemCount } = useContext(CartContext);
   const status = useInternetStatus();
   const linkStyle = {
     color: "black",
     textDecoration: "none",
   };
+
+  // subscribing to the store using a selector
+  const cartItems = useSelector((store) => {
+    return store.cart.items;
+  });
+  console.log("cartItems:", cartItems);
 
   return (
     <div className="w-full z-10 bg-white flex justify-between items-center px-4 shadow-md shadow-green-400 fixed top-0">
@@ -43,8 +48,8 @@ const Header = () => {
             <li className="nav-items-ul-items">Contact</li>
           </Link>
           <Link to="/cart" style={linkStyle}>
-            <li className="nav-items-ul-items">
-              Cart {itemCount === 0 ? "" : `(${itemCount})`}
+            <li className="nav-items-ul-items font-extrabold">
+              Cart ({cartItems.length})
             </li>
           </Link>
           <button

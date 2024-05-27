@@ -1,11 +1,15 @@
-import { useContext } from "react";
+import { useDispatch } from "react-redux";
 import { CDN_MENU, DEFAULT_IMAGE_URL } from "../utils/constants";
-import CartContext from "../utils/cartContext";
+import { addItem } from "../store/slices/cartSlice";
 
 const MenuItemCard = ({ menuData }) => {
-  const data = useContext(CartContext);
   const { name, price, ratings, category, imageId, description, defaultPrice } =
     menuData?.card?.info;
+  const dispatch = useDispatch();
+
+  const handleAddItem = (item) => {
+    dispatch(addItem(item));
+  };
 
   return (
     <div className="w-80 sm:w-80 text-sm bg-gray-0 rounded-md overflow-hidden mt-6 p-4 border border-gray-50 hover:border-gray-400 font-montserrat flex flex-col justify-between">
@@ -31,7 +35,7 @@ const MenuItemCard = ({ menuData }) => {
       </div>
       <button
         className="bg-green-100 text-green-500 border-2 border-green-400 font-bold p-3 rounded mt-2 cursor-pointer"
-        onClick={() => data.setCartItemCount(data.itemCount + 1)}
+        onClick={() => handleAddItem(menuData)}
       >
         ADD
       </button>

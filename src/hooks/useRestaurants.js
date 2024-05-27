@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { RESTAURANT_API } from "../utils/constants";
+import { RESTAURANT_API, RESTAURANT_API2 } from "../utils/constants";
 const useRestaurantsData = () => {
   const [restaurants, setRestaurants] = useState([]);
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
@@ -10,13 +10,17 @@ const useRestaurantsData = () => {
 
   async function fetchData() {
     try {
-      const res = await fetch(RESTAURANT_API);
+      // RESTAURANT_API ||
+      const res = await fetch(RESTAURANT_API2);
       const jsonData = await res.json();
-      const restaurantLists =
+      console.log(jsonData);
+
+      const restaurantList =
         jsonData?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
           ?.restaurants;
-      setRestaurants(restaurantLists);
-      setFilteredRestaurants(restaurantLists);
+      console.log("restaurantList:", restaurantList);
+      setRestaurants(restaurantList);
+      setFilteredRestaurants(restaurantList);
     } catch (err) {
       console.log("Failed to fetch restaurant detail:", err);
     }
