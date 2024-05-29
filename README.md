@@ -6,6 +6,10 @@
     - react
     - react-dom
     - react-router-dom
+    - fetch
+    - tailwindcss
+    - @reduxjs/toolkit
+    - react-toastify
 
 # Concepts Applied
 

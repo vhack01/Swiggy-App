@@ -31,14 +31,6 @@ const Body = () => {
     <div className="p-4">
       <div className="search"></div>
       <div className="flex justify-end gap-x-5">
-        <div>
-          <input
-            type="text"
-            placeholder="Type here..."
-            className="border-2 p-1 rounded"
-            onChange={(e) => data.setName(e.target.value)}
-          />
-        </div>
         <SearchBar fn={handleSearch} />
         <button
           className="rounded py-1 px-2 bg-gray-200 hover:bg-gray-300 cursor-pointer"

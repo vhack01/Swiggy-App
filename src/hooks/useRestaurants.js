@@ -13,12 +13,9 @@ const useRestaurantsData = () => {
       // RESTAURANT_API ||
       const res = await fetch(RESTAURANT_API2);
       const jsonData = await res.json();
-      console.log(jsonData);
-
       const restaurantList =
         jsonData?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
           ?.restaurants;
-      console.log("restaurantList:", restaurantList);
       setRestaurants(restaurantList);
       setFilteredRestaurants(restaurantList);
     } catch (err) {

@@ -1,14 +1,24 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { CDN_MENU, DEFAULT_IMAGE_URL } from "../utils/constants";
 import { addItem } from "../store/slices/cartSlice";
+import isItemExist from "../utils/isItemExist";
+import { toast } from "react-toastify";
 
 const MenuItemCard = ({ menuData }) => {
   const { name, price, ratings, category, imageId, description, defaultPrice } =
     menuData?.card?.info;
   const dispatch = useDispatch();
 
+  const cartItems = useSelector((store) => store.cart.items);
+  // console.log("cartItems:", cartItems);
   const handleAddItem = (item) => {
-    dispatch(addItem(item));
+    if (!isItemExist(cartItems, item?.card?.info?.id)) dispatch(addItem(item));
+    else {
+      toast.warn("Already added !!", {
+        theme: "colored",
+      });
+      console.log("already added");
+    }
   };
 
   return (

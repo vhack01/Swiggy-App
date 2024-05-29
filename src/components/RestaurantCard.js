@@ -11,10 +11,7 @@ const RestaurantCard = ({ tag, resData }) => {
     cloudinaryImageId,
     costForTwo,
   } = resData?.info;
-  const data = useContext(UserContext);
-  function handleRestaurantNavigation(restId) {
-    console.log("restaurant id:", restId);
-  }
+  function handleRestaurantNavigation(restId) {}
 
   return (
     <div
@@ -38,7 +35,6 @@ const RestaurantCard = ({ tag, resData }) => {
           Delivery in : {sla.deliveryTime} min
         </h3>
       </div>
-      <h1>{data.loggedIn}</h1>
     </div>
   );
 };

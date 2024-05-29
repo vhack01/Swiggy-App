@@ -13,10 +13,9 @@ const Header = () => {
   };
 
   // subscribing to the store using a selector
-  const cartItems = useSelector((store) => {
-    return store.cart.items;
+  const itemCount = useSelector((store) => {
+    return store.cart.count;
   });
-  console.log("cartItems:", cartItems);
 
   return (
     <div className="w-full z-10 bg-white flex justify-between items-center px-4 shadow-md shadow-green-400 fixed top-0">
@@ -49,7 +48,7 @@ const Header = () => {
           </Link>
           <Link to="/cart" style={linkStyle}>
             <li className="nav-items-ul-items font-extrabold">
-              Cart ({cartItems.length})
+              Cart ({itemCount})
             </li>
           </Link>
           <button
@@ -59,12 +58,6 @@ const Header = () => {
             }}
           >
             {btnName}
-            <div
-              className="internet-status"
-              style={{
-                backgroundColor: `${status === true ? "green" : "red"}`,
-              }}
-            ></div>
           </button>
           <li className="font-bold">
             <UserContext.Consumer>

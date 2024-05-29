@@ -3,13 +3,15 @@ import ReactDOM from "react-dom/client";
 import Header from "./components/Header";
 import Body from "./components/Body";
 import Contact from "./components/Contact";
+import Cart from "./components/Cart";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import Error from "./components/Error";
 import RestaurantMenu from "./components/RestaurantMenu";
 import UserContext from "./utils/UserContext";
 import { Provider } from "react-redux";
 import appStore from "./store/appStore";
-
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const About = lazy(() => {
   return import("./components/About");
 });
@@ -32,6 +34,7 @@ const AppLayout = () => {
             <Outlet />
           </div>
         </div>
+        <ToastContainer />
       </UserContext.Provider>
     </Provider>
   );
@@ -69,6 +72,10 @@ const router = createBrowserRouter([
       {
         path: "/restaurants/:restId",
         element: <RestaurantMenu />,
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
       },
     ],
     errorElement: <Error />,
