@@ -36,3 +36,20 @@
     4. create Slice(cartSlice)
     5. dispatch(action) -> write data
     6. selector -> read data
+
+# Testing
+
+## Types of testing
+
+    - Unit Testing
+    - Integration Testing
+    - End 2 End Testing(E2E)
+
+## Steps to setup Testing
+
+    - Install React Testing Library
+    - Install Jest
+    - Install Babel
+    - Configire Babel (inside babel.config.js)
+    - Disable Babel transpilation in Parcel, override the default Parcel config for JavaScript
+    - Configure Jest (npx jest --init)

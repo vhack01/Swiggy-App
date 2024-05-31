@@ -23,7 +23,7 @@ const RestaurantCard = ({ tag, resData }) => {
         className="rounded h-[14rem] object-cover"
       />
       <div className="text-lg font-semibold">{name}</div>
-      <h3 className="text-xs">{cuisines.join(", ")}</h3>
+      <h3 className="text-xs text-center">{cuisines.join(", ")}</h3>
       <h3 className="font-medium">{costForTwo}</h3>
       <div className="flex items-center gap-x-4 justify-between font-medium">
         <h3
