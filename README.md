@@ -47,9 +47,14 @@
 
 ## Steps to setup Testing
 
-    - Install React Testing Library
-    - Install Jest
-    - Install Babel
-    - Configire Babel (inside babel.config.js)
-    - Disable Babel transpilation in Parcel, override the default Parcel config for JavaScript
-    - Configure Jest (npx jest --init)
+    1. Install React Testing Library
+    2. Install Jest
+    3. Install Babel
+    4. Configire Babel (inside babel.config.js)
+    5. Disable Babel transpilation in Parcel, override the default Parcel config for JavaScript
+    6. Configure Jest (npx jest --init)
+    7. Install jsdom (npm i -D jest-envirnoment-jsdom)
+    8. Install (@babel/preset-react) -> Enable JSX rendering in Testing
+    9. Include @babel/preset-react inside babel.config.js
+    9. Install (npm i -D @testing-library/jest-dom)
+    10.

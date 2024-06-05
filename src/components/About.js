@@ -7,21 +7,24 @@ const About = () => {
   const data = useContext(UserContext);
   const [users, setUsers] = useState([]);
   useEffect(() => {
-    console.log("useEffect About");
     fetchData();
   }, []);
 
   async function fetchData() {
-    const res = await fetch("https://api.github.com/gists/public");
-    const json = await res.json();
-    if (json) {
-      setUsers(json);
+    try {
+      const res = await fetch("https://api.github.com/gists/public");
+      const json = await res.json();
+      if (json) {
+        setUsers(json);
+      }
+    } catch (err) {
+      console.log("Failed to get about data");
     }
   }
 
   return (
     <div className="p-4">
-      <h1>{data.loggedIn}</h1>
+      <h1 className="text-4xl font-bold text-center">About Us</h1>
       <div className="flex flex-wrap justify-center gap-4">
         {users !== undefined && users?.length === 0 ? (
           <Shimmer />
